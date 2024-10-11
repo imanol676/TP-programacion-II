@@ -13,10 +13,6 @@ public abstract class User //Esta clase  no se instancia para que de ella salgan
 
 public class Admin : User
 {
-
+    public string Role { get; set; }
 }
 
-public class Client : User
-{
-
-}

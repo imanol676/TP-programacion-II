@@ -27,6 +27,7 @@ public class ProjectContext : DbContext
             entity.Property(u => u.Password).IsRequired().HasMaxLength(100);
 
             modelBuilder.Entity<User>().HasDiscriminator<string>("UserType").HasValue<Admin>("Admin");
+            modelBuilder.Entity<User>().HasDiscriminator<string>("UserType").HasValue<cliente>("Cliente");
         });
 
         modelBuilder.Entity<Vehiculo>(entity =>

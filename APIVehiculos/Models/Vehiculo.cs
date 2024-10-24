@@ -8,4 +8,6 @@ public class Vehiculo
 
     // Relación con Reservas (Un Vehiculo puede estar en muchas Reservas)
     public List<Reserva> Reservas { get; set; }
+
+
 }

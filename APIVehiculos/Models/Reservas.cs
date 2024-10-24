@@ -12,4 +12,10 @@ public class Reserva
 
     public int UsuarioId { get; set; }  // Clave foránea
     public User Usuario { get; set; }
+
+    public bool ValidarReserva()
+    {
+        // Lógica para validar reserva
+        return FechaInicio < FechaFin && !string.IsNullOrEmpty(Estado);
+    }
 }

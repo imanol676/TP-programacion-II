@@ -13,6 +13,30 @@ public abstract class User //Esta clase  no se instancia para que de ella salgan
 
 public class Admin : User
 {
-    public string Role { get; set; }
+    public void GestionarVehiculos()
+    {
+        // Lógica para gestionar vehículos
+    }
+
+    public void GestionarReservas()
+    {
+        // Lógica para gestionar reservas
+    }
+}
+
+
+
+public class cliente : User
+{
+    public void RealizarReserva(Reserva reserva)
+    {
+        // Lógica para realizar una reserva
+    }
+
+    public IEnumerable<Reserva> VerHistorialReservas()
+    {
+        // Lógica para ver el historial de reservas
+        return new List<Reserva>();
+    }
 }
 

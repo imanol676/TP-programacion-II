@@ -1,10 +1,10 @@
 public interface IUserService
 {
-    IEnumerable<User> GetAllUsers();
-    User? GetUserById(int id);
-    User Create(UserDTO userDto);
+    IEnumerable<ApplicationUser> GetAllUsers();
+    ApplicationUser? GetUserById(int id);
+    ApplicationUser Create(RegisterDTO userDto);
     void DeleteUser(int id);
-    User? UpdateUser(int id, User user);
+    ApplicationUser? UpdateUser(int id, ApplicationUser user);
 
 }
 

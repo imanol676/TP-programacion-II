@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\imano\\OneDrive\\Escritorio\\TP programación II\\APIVehiculos\\APIVehiculos.csproj": {}
+    "C:\\Users\\imano\\OneDrive\\Escritorio\\uni\\Programación II\\TP programación II\\APIVehiculos\\APIVehiculos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\imano\\OneDrive\\Escritorio\\TP programación II\\APIVehiculos\\APIVehiculos.csproj": {
+    "C:\\Users\\imano\\OneDrive\\Escritorio\\uni\\Programación II\\TP programación II\\APIVehiculos\\APIVehiculos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\imano\\OneDrive\\Escritorio\\TP programación II\\APIVehiculos\\APIVehiculos.csproj",
+        "projectUniqueName": "C:\\Users\\imano\\OneDrive\\Escritorio\\uni\\Programación II\\TP programación II\\APIVehiculos\\APIVehiculos.csproj",
         "projectName": "APIVehiculos",
-        "projectPath": "C:\\Users\\imano\\OneDrive\\Escritorio\\TP programación II\\APIVehiculos\\APIVehiculos.csproj",
+        "projectPath": "C:\\Users\\imano\\OneDrive\\Escritorio\\uni\\Programación II\\TP programación II\\APIVehiculos\\APIVehiculos.csproj",
         "packagesPath": "C:\\Users\\imano\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\imano\\OneDrive\\Escritorio\\TP programación II\\APIVehiculos\\obj\\",
+        "outputPath": "C:\\Users\\imano\\OneDrive\\Escritorio\\uni\\Programación II\\TP programación II\\APIVehiculos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\imano\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.8, )"

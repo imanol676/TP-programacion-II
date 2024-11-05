@@ -10,7 +10,7 @@ public class ProjectContext : DbContext
     }
 
 
-    public DbSet<User> Users { get; set; }
+
     public DbSet<Vehiculo> Vehiculos { get; set; }
     public DbSet<Reserva> Reservas { get; set; }
 
@@ -18,17 +18,7 @@ public class ProjectContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>(entity =>
-        {
-            modelBuilder.Entity<User>().ToTable("Users");
 
-            entity.Property(u => u.Username).IsRequired().HasMaxLength(100);
-            entity.Property(u => u.Email).IsRequired().HasMaxLength(100);
-            entity.Property(u => u.Password).IsRequired().HasMaxLength(100);
-
-            modelBuilder.Entity<User>().HasDiscriminator<string>("UserType").HasValue<Admin>("Admin");
-            modelBuilder.Entity<User>().HasDiscriminator<string>("UserType").HasValue<cliente>("Cliente");
-        });
 
         modelBuilder.Entity<Vehiculo>(entity =>
         {

@@ -10,17 +10,18 @@ public class ReservaDbService : IReservaService
     }
     public Reserva CreateReserva(ReservaDTO r)
     {
-        Reserva reserva = new()
+        var nuevaReserva = new Reserva
         {
+            UserId = r.userId,
+            VehiculoId = r.VehiculoId,
             FechaInicio = r.FechaInicio,
             FechaFin = r.FechaFin,
             Estado = r.Estado,
-            VehiculoId = r.VehiculoId,
-            UserId = r.UserId,
+
         };
-        _context.Reservas.Add(reserva);
+        _context.Reservas.Add(nuevaReserva);
         _context.SaveChanges();
-        return reserva;
+        return nuevaReserva;
     }
 
     public void DeleteReserva(int id)
@@ -54,4 +55,4 @@ public class ReservaDbService : IReservaService
     {
         return _context.Reservas.Where(r => r.UserId == userId).ToList();
     }
-    }
+}

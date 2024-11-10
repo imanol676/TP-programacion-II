@@ -7,15 +7,13 @@ public class Reserva
     public required string Estado { get; set; }  // Estado de la reserva (pendiente, confirmada, cancelada, etc.)
 
     // Relaciones
-    public int VehiculoId { get; set; }  // Clave foránea
-    public required Vehiculo vehiculo { get; set; }
+    public int VehiculoId { get; set; }
+    public Vehiculo Vehiculo { get; set; }
 
-    public required ApplicationUser Usuario { get; set; }
+    public ApplicationUser Usuario { get; set; }
     public int UserId { get; internal set; }
 
-    public bool ValidarReserva()
-    {
-        // Lógica para validar reserva
-        return FechaInicio < FechaFin && !string.IsNullOrEmpty(Estado);
-    }
+
 }
+
+

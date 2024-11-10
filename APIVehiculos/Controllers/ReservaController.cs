@@ -50,7 +50,7 @@ public class ReservaController : ControllerBase
     {
         Reserva _r = _reservaServices.CreateReserva(r);
 
-        return CreatedAtAction(nameof(GetReservaById), new { id = _r.Id }, _r);
+        return CreatedAtAction(nameof(GetReservaById), new { id = _r.IdReserva }, _r);
     }
 
     [HttpDelete("{id}")]
@@ -68,7 +68,7 @@ public class ReservaController : ControllerBase
     public ActionResult<Reserva> UpdateReserva(int id, Reserva updatedReserva)
     {
 
-        if (id != updatedReserva.Id)
+        if (id != updatedReserva.IdReserva)
         {
             return BadRequest("El ID de la reserva en la URL no coincide con el ID de la reserva en el cuerpo de la solicitud.");
         }
@@ -78,7 +78,7 @@ public class ReservaController : ControllerBase
         {
             return NotFound();
         }
-        return CreatedAtAction(nameof(GetReservaById), new { id = reserva.Id }, reserva);
+        return CreatedAtAction(nameof(GetReservaById), new { id = reserva.IdReserva }, reserva);
     }
 
 }

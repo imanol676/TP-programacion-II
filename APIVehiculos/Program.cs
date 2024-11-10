@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +13,8 @@ builder.Services.AddControllers();
 
 //crear variable para la cadena de conexión
 var connectionString = builder.Configuration.GetConnectionString("cnVehiculos");
-connectionString = connectionString.Replace("SERVER_NAME", builder.Configuration["SERVER_NAME"]);
-connectionString = connectionString.Replace("DB_USER", builder.Configuration["DB_USER"]);
-connectionString = connectionString.Replace("DB_PASS", builder.Configuration["DB_PASS"]);
+
+
 
 //registrar servicio para la conexión
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));

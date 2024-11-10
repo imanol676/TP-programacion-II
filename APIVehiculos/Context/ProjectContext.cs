@@ -20,6 +20,8 @@ public class ProjectContext : DbContext
     {
 
 
+
+
         modelBuilder.Entity<Vehiculo>(entity =>
         {
             modelBuilder.Entity<Vehiculo>().ToTable("Vehicles");
@@ -38,11 +40,11 @@ public class ProjectContext : DbContext
                 entity.Property(r => r.FechaFin).IsRequired();
                 entity.Property(r => r.Estado).IsRequired();
 
-                //Una reserva tiene solo un usario, pero un usuario hace muchas reservas
-                entity.HasOne(r => r.Usuario).WithMany(u => u.Reservas).HasForeignKey(r => r.UsuarioId).IsRequired();
+                //Relaciones
+                entity.HasOne(r => r.Usuario).WithMany().OnDelete(DeleteBehavior.Restrict);
 
-                //Una reserva tiene un vehiculo, pero un vehiculo puede estar en ninguna o muchas reservas.
-                entity.HasOne(r => r.vehiculo).WithMany(v => v.Reservas).HasForeignKey(r => r.VehiculoId).IsRequired();
+                entity.HasOne(r => r.vehiculo).WithMany().HasForeignKey(r => r.VehiculoId).OnDelete(DeleteBehavior.Restrict);
+
 
             }
         );

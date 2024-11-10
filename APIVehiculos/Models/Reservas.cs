@@ -10,8 +10,8 @@ public class Reserva
     public int VehiculoId { get; set; }  // Clave foránea
     public Vehiculo vehiculo { get; set; }
 
-    public int UsuarioId { get; set; }  // Clave foránea
-    public User Usuario { get; set; }
+    public ApplicationUser Usuario { get; set; }
+
 
     public bool ValidarReserva()
     {

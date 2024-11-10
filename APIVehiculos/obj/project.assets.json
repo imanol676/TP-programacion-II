@@ -4388,11 +4388,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\imano\\OneDrive\\Escritorio\\uni\\Programación II\\TP programación II\\APIVehiculos\\APIVehiculos.csproj",
+      "projectUniqueName": "C:\\Users\\imano\\OneDrive\\Escritorio\\TP-programacion-II\\APIVehiculos\\APIVehiculos.csproj",
       "projectName": "APIVehiculos",
-      "projectPath": "C:\\Users\\imano\\OneDrive\\Escritorio\\uni\\Programación II\\TP programación II\\APIVehiculos\\APIVehiculos.csproj",
+      "projectPath": "C:\\Users\\imano\\OneDrive\\Escritorio\\TP-programacion-II\\APIVehiculos\\APIVehiculos.csproj",
       "packagesPath": "C:\\Users\\imano\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\imano\\OneDrive\\Escritorio\\uni\\Programación II\\TP programación II\\APIVehiculos\\obj\\",
+      "outputPath": "C:\\Users\\imano\\OneDrive\\Escritorio\\TP-programacion-II\\APIVehiculos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\imano\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -17,8 +17,10 @@ public class Admin : ApplicationUser
 
 public class Cliente : ApplicationUser
 {
+
     public void RealizarReserva(Reserva reserva)
     {
+
         // Lógica para realizar una reserva
     }
 

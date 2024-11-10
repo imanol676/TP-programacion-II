@@ -16,7 +16,7 @@ public class ReservaDbService : IReservaService
             FechaFin = r.FechaFin,
             Estado = r.Estado,
             VehiculoId = r.VehiculoId,
-
+            UserId = r.UserId,
         };
         _context.Reservas.Add(reserva);
         _context.SaveChanges();
@@ -26,8 +26,11 @@ public class ReservaDbService : IReservaService
     public void DeleteReserva(int id)
     {
         var r = _context.Reservas.Find(id);
-        _context.Reservas.Remove(r);
-        _context.SaveChanges();
+        if (r != null)
+        {
+            _context.Reservas.Remove(r);
+            _context.SaveChanges();
+        }
     }
 
     public IEnumerable<Reserva> GetAllReservas()
@@ -47,8 +50,8 @@ public class ReservaDbService : IReservaService
         return r;
     }
 
-    public Reserva GetReservasByUserId(int userId)
+    public IEnumerable<Reserva> GetReservasByUserId(int userId)
     {
-        return _context.Reservas.Find(userId);
+        return _context.Reservas.Where(r => r.UserId == userId).ToList();
     }
-}
+    }

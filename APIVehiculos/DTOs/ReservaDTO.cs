@@ -12,5 +12,6 @@ public class ReservaDTO
     public DateTime FechaFin { get; set; }
 
     [Required(ErrorMessage = "El campo Estado es requerido.")]
-    public string Estado { get; set; }
+    public required string Estado { get; set; }
+    public int UserId { get; internal set; }
 }

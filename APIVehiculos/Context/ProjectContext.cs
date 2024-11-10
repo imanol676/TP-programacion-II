@@ -34,19 +34,19 @@ public class ProjectContext : DbContext
 
         modelBuilder.Entity<Reserva>(entity =>
             {
-                modelBuilder.Entity<Reserva>().ToTable("Reserves");
+            entity.HasKey(r => r.IdReserva);
+            // Configurar IdReserva como identidad
+            entity.Property(r => r.IdReserva).ValueGeneratedOnAdd();
 
-                entity.Property(r => r.FechaInicio).IsRequired();
-                entity.Property(r => r.FechaFin).IsRequired();
-                entity.Property(r => r.Estado).IsRequired();
+            entity.Property(r => r.Estado).IsRequired();
 
-                //Relaciones
-                entity.HasOne(r => r.Usuario).WithMany().OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(r => r.vehiculo).WithMany(v => v.Reservas).HasForeignKey(r => r.VehiculoId).OnDelete(DeleteBehavior.Restrict);
 
-                entity.HasOne(r => r.vehiculo).WithMany().HasForeignKey(r => r.VehiculoId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(r => r.Usuario).WithMany(u => u.Reservas).HasForeignKey(r => r.UserId).OnDelete(DeleteBehavior.Cascade);
 
+            // Restricción de fecha para evitar reservas en fechas pasadas
+            entity.ToTable(t => t.HasCheckConstraint("CK_Reserva_Fecha", "FechaInicio >= GETDATE()"));
+        });
 
-            }
-        );
     }
 }

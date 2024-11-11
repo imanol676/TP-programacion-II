@@ -337,7 +337,7 @@ namespace APIVehiculos.Migrations
                         .HasForeignKey("UsuarioId");
 
                     b.HasOne("Vehiculo", "Vehiculo")
-                        .WithMany("Reservas")
+                        .WithMany("reservas")
                         .HasForeignKey("VehiculoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -354,7 +354,7 @@ namespace APIVehiculos.Migrations
 
             modelBuilder.Entity("Vehiculo", b =>
                 {
-                    b.Navigation("Reservas");
+                    b.Navigation("reservas");
                 });
 #pragma warning restore 612, 618
         }

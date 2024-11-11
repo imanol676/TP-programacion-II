@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIVehiculos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241111223059_BaseFin")]
+    [Migration("20241111230436_BaseFin")]
     partial class BaseFin
     {
         /// <inheritdoc />
@@ -340,7 +340,7 @@ namespace APIVehiculos.Migrations
                         .HasForeignKey("UsuarioId");
 
                     b.HasOne("Vehiculo", "Vehiculo")
-                        .WithMany("Reservas")
+                        .WithMany("reservas")
                         .HasForeignKey("VehiculoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -357,7 +357,7 @@ namespace APIVehiculos.Migrations
 
             modelBuilder.Entity("Vehiculo", b =>
                 {
-                    b.Navigation("Reservas");
+                    b.Navigation("reservas");
                 });
 #pragma warning restore 612, 618
         }

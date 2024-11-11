@@ -56,6 +56,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddSqlServer<ProjectContext>(connectionString);
 builder.Services.AddScoped<IReservaService, ReservaDbService>();
+builder.Services.AddScoped<IVehiculoService, VehiculoDbService>();
 
 
 // Configurar Identity

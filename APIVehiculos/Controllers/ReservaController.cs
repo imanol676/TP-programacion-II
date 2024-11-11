@@ -25,7 +25,7 @@ public class ReservaController : ControllerBase
     [HttpGet("{id}/reserva")]
     [Authorize(Roles = "admin")]
 
-    public ActionResult<List<Reserva>> GetReservasByUserId(int id)
+    public ActionResult<List<Reserva>> GetReservasByUserId(string id)
     {
         var a = _reservaServices.GetReservasByUserId(id);
         return Ok(a);
@@ -33,6 +33,8 @@ public class ReservaController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "admin")]
+
     public ActionResult<Reserva> GetReservaById(int id)
     {
         Reserva? r = _reservaServices.GetReservaById(id);
@@ -50,7 +52,7 @@ public class ReservaController : ControllerBase
     {
         Reserva _r = _reservaServices.CreateReserva(r);
 
-        return CreatedAtAction(nameof(GetReservaById), new { id = _r.IdReserva }, _r);
+        return CreatedAtAction(nameof(GetReservaById), new { id = _r.ReservaId }, _r);
     }
 
     [HttpDelete("{id}")]
@@ -68,7 +70,7 @@ public class ReservaController : ControllerBase
     public ActionResult<Reserva> UpdateReserva(int id, Reserva updatedReserva)
     {
 
-        if (id != updatedReserva.IdReserva)
+        if (id != updatedReserva.ReservaId)
         {
             return BadRequest("El ID de la reserva en la URL no coincide con el ID de la reserva en el cuerpo de la solicitud.");
         }
@@ -78,7 +80,7 @@ public class ReservaController : ControllerBase
         {
             return NotFound();
         }
-        return CreatedAtAction(nameof(GetReservaById), new { id = reserva.IdReserva }, reserva);
+        return CreatedAtAction(nameof(GetReservaById), new { id = reserva.ReservaId }, reserva);
     }
 
 }

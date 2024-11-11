@@ -6,5 +6,5 @@ public interface IReservaService
     Reserva? UpdateReserva(int id, Reserva reserva);
     void DeleteReserva(int id);
 
-    IEnumerable<Reserva> GetReservasByUserId(int userId);
+    IEnumerable<Reserva> GetReservasByUserId(string userId);
 }

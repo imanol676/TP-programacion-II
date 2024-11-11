@@ -28,7 +28,7 @@ public class ProjectContext : DbContext
 
             entity.Property(v => v.Marca).IsRequired();
             entity.Property(v => v.Modelo).IsRequired();
-            entity.Property(v => v.PrecioPorDia).IsRequired();
+            entity.Property(v => v.PrecioPorDia).HasColumnType("decimal(18,2)").IsRequired();
             entity.Property(v => v.EstaDisponible).IsRequired();
         });
 
@@ -39,7 +39,10 @@ public class ProjectContext : DbContext
 
                 entity.HasOne(r => r.Vehiculo).WithMany(v => v.Reservas).HasForeignKey(r => r.VehiculoId).OnDelete(DeleteBehavior.Restrict);
 
-                entity.HasOne(r => r.Usuario).WithMany(u => u.Reservas).HasForeignKey(r => r.UserId).OnDelete(DeleteBehavior.Cascade);
+                entity.HasOne(r => r.Usuario)
+      .WithMany(u => u.Reservas)
+      .HasForeignKey(r => r.UserId)
+      .OnDelete(DeleteBehavior.Cascade);
 
                 // Restricción de fecha para evitar reservas en fechas pasadas
                 entity.ToTable(t => t.HasCheckConstraint("CK_Reserva_Fecha", "FechaInicio >= GETDATE()"));

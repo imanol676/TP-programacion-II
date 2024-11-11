@@ -15,9 +15,12 @@ builder.Services.AddControllers();
 var connectionString = builder.Configuration.GetConnectionString("cnVehiculos");
 
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+     options.UseSqlServer(builder.Configuration.GetConnectionString("cnVehiculos")));
 
 //registrar servicio para la conexión
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<ProjectContext>(options => options.UseSqlServer(connectionString));
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

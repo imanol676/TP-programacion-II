@@ -12,7 +12,7 @@ public class ReservaDbService : IReservaService
     {
         var nuevaReserva = new Reserva
         {
-            UserId = r.userId,
+            UserId = r.UserId,
             VehiculoId = r.VehiculoId,
             FechaInicio = r.FechaInicio,
             FechaFin = r.FechaFin,
@@ -51,8 +51,8 @@ public class ReservaDbService : IReservaService
         return r;
     }
 
-    public IEnumerable<Reserva> GetReservasByUserId(int userId)
+    public IEnumerable<Reserva> GetReservasByUserId(string userId)
     {
-        return _context.Reservas.Where(r => r.UserId == userId).ToList();
+        return _context.Reservas.Where(r => r.UserId == userId);
     }
 }

@@ -8,7 +8,7 @@ public class VehiculoDTO
     public required string Marca { get; set; }
 
     [Required(ErrorMessage = "El campo es requerido.")]
-    public float PrecioPorDia { get; set; }
+    public decimal PrecioPorDia { get; set; }
 
     [Required(ErrorMessage = "El campo es requerido.")]
     public required bool EstaDisponible { get; set; }

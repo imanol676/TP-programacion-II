@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace APIVehiculos.Migrations
+namespace APIVehiculos.Migrations.Project
 {
     /// <inheritdoc />
-    public partial class BaseFin : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,15 +62,15 @@ namespace APIVehiculos.Migrations
                     FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VehiculoId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UsuarioId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservas", x => x.ReservaId);
                     table.CheckConstraint("CK_Reserva_Fecha", "FechaInicio >= GETDATE()");
                     table.ForeignKey(
-                        name: "FK_Reservas_ApplicationUser_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Reservas_ApplicationUser_UsuarioId",
+                        column: x => x.UsuarioId,
                         principalTable: "ApplicationUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -83,9 +83,9 @@ namespace APIVehiculos.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservas_UserId",
+                name: "IX_Reservas_UsuarioId",
                 table: "Reservas",
-                column: "UserId");
+                column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservas_VehiculoId",

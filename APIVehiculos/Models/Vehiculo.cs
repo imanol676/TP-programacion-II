@@ -7,7 +7,7 @@ public class Vehiculo
     public bool EstaDisponible { get; set; }
 
     // Relación con Reservas (Un Vehiculo puede estar en muchas Reservas)
-    public required List<Reserva> Reservas { get; set; }
+    public required List<Reserva> reservas { get; set; }
 
 
 }

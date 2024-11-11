@@ -20,7 +20,7 @@ public class VehiculoDbService : IVehiculoService
             Marca = v.Marca,
             PrecioPorDia = (decimal)v.PrecioPorDia,
             EstaDisponible = v.EstaDisponible,
-            Reservas = new List<Reserva>()
+            reservas = new List<Reserva>()
         };
         _context.Vehiculos.Add(nuevoVehiculo);
         _context.SaveChanges();

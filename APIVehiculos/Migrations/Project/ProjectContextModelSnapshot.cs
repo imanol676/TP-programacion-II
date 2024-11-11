@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace APIVehiculos.Migrations
+namespace APIVehiculos.Migrations.Project
 {
     [DbContext(typeof(ProjectContext))]
     partial class ProjectContextModelSnapshot : ModelSnapshot
@@ -91,7 +91,7 @@ namespace APIVehiculos.Migrations
                     b.Property<DateTime>("FechaInicio")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("UsuarioId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("VehiculoId")
@@ -99,7 +99,7 @@ namespace APIVehiculos.Migrations
 
                     b.HasKey("ReservaId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsuarioId");
 
                     b.HasIndex("VehiculoId");
 
@@ -139,8 +139,8 @@ namespace APIVehiculos.Migrations
             modelBuilder.Entity("Reserva", b =>
                 {
                     b.HasOne("ApplicationUser", "Usuario")
-                        .WithMany("Reservas")
-                        .HasForeignKey("UserId")
+                        .WithMany("reserva")
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Vehiculo", "Vehiculo")
@@ -156,7 +156,7 @@ namespace APIVehiculos.Migrations
 
             modelBuilder.Entity("ApplicationUser", b =>
                 {
-                    b.Navigation("Reservas");
+                    b.Navigation("reserva");
                 });
 
             modelBuilder.Entity("Vehiculo", b =>

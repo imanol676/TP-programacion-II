@@ -1,5 +1,7 @@
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
+
 
 public class ProjectContext : DbContext
 {
@@ -16,10 +18,9 @@ public class ProjectContext : DbContext
 
 
 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
-
 
 
         modelBuilder.Entity<Vehiculo>(entity =>
@@ -35,8 +36,8 @@ public class ProjectContext : DbContext
         modelBuilder.Entity<Reserva>(entity =>
             {
                 entity.Property(r => r.Estado).IsRequired();
-                entity.HasOne(r => r.Vehiculo).WithMany(v => v.Reservas).HasForeignKey(r => r.VehiculoId).OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(r => r.Usuario).WithMany(u => u.Reservas).HasForeignKey(r => r.UsuarioId)
+                entity.HasOne(r => r.Vehiculo).WithMany(v => v.reservas).HasForeignKey(r => r.VehiculoId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(r => r.Usuario).WithMany(u => u.reserva).HasForeignKey(r => r.UsuarioId)
                 .OnDelete(DeleteBehavior.Cascade);
 
                 // Restricción de fecha para evitar reservas en fechas pasadas

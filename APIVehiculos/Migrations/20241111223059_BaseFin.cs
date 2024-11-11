@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace APIVehiculos.Migrations.ApplicationDb
+namespace APIVehiculos.Migrations
 {
     /// <inheritdoc />
     public partial class BaseFin : Migration
@@ -182,8 +182,7 @@ namespace APIVehiculos.Migrations.ApplicationDb
                     FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VehiculoId = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UsuarioId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -192,8 +191,7 @@ namespace APIVehiculos.Migrations.ApplicationDb
                         name: "FK_Reserva_AspNetUsers_UsuarioId",
                         column: x => x.UsuarioId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Reserva_Vehiculo_VehiculoId",
                         column: x => x.VehiculoId,

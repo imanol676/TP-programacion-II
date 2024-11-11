@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace APIVehiculos.Migrations.ApplicationDb
+namespace APIVehiculos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241111150141_BaseFin")]
+    [Migration("20241111223059_BaseFin")]
     partial class BaseFin
     {
         /// <inheritdoc />
@@ -240,11 +240,7 @@ namespace APIVehiculos.Migrations.ApplicationDb
                     b.Property<DateTime>("FechaInicio")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UsuarioId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("VehiculoId")
@@ -340,10 +336,8 @@ namespace APIVehiculos.Migrations.ApplicationDb
             modelBuilder.Entity("Reserva", b =>
                 {
                     b.HasOne("ApplicationUser", "Usuario")
-                        .WithMany("Reservas")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("reserva")
+                        .HasForeignKey("UsuarioId");
 
                     b.HasOne("Vehiculo", "Vehiculo")
                         .WithMany("Reservas")
@@ -358,7 +352,7 @@ namespace APIVehiculos.Migrations.ApplicationDb
 
             modelBuilder.Entity("ApplicationUser", b =>
                 {
-                    b.Navigation("Reservas");
+                    b.Navigation("reserva");
                 });
 
             modelBuilder.Entity("Vehiculo", b =>

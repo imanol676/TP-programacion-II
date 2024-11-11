@@ -29,21 +29,28 @@ public class VehiculoDbService : IVehiculoService
 
     public void DeleteVehiculo(int id)
     {
-
+        var v = _context.Vehiculos.Find(id);
+        if (v != null)
+        {
+            _context.Vehiculos.Remove(v);
+            _context.SaveChanges();
+        }
     }
 
     public IEnumerable<Vehiculo> GetAllVehiculos()
     {
-        throw new NotImplementedException();
+        return _context.Vehiculos;
     }
 
     public Vehiculo? GetVehiculoById(int id)
     {
-        throw new NotImplementedException();
+        return _context.Vehiculos.Find(id);
     }
 
     public Vehiculo? UpdateVehiculo(int id, Vehiculo vehiculo)
     {
-        throw new NotImplementedException();
+        _context.Entry(vehiculo).State = EntityState.Modified;
+        _context.SaveChanges();
+        return vehiculo;
     }
 }

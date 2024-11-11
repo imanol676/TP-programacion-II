@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\imano\\OneDrive\\Escritorio\\TP-programacion-II\\APIVehiculos\\APIVehiculos.csproj": {}
+    "C:\\Users\\nicog\\Documents\\Ingenieria_en_Sistemas\\Segundo\\Programacion_2\\TP-programacion-II\\APIVehiculos\\APIVehiculos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\imano\\OneDrive\\Escritorio\\TP-programacion-II\\APIVehiculos\\APIVehiculos.csproj": {
+    "C:\\Users\\nicog\\Documents\\Ingenieria_en_Sistemas\\Segundo\\Programacion_2\\TP-programacion-II\\APIVehiculos\\APIVehiculos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\imano\\OneDrive\\Escritorio\\TP-programacion-II\\APIVehiculos\\APIVehiculos.csproj",
+        "projectUniqueName": "C:\\Users\\nicog\\Documents\\Ingenieria_en_Sistemas\\Segundo\\Programacion_2\\TP-programacion-II\\APIVehiculos\\APIVehiculos.csproj",
         "projectName": "APIVehiculos",
-        "projectPath": "C:\\Users\\imano\\OneDrive\\Escritorio\\TP-programacion-II\\APIVehiculos\\APIVehiculos.csproj",
-        "packagesPath": "C:\\Users\\imano\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\imano\\OneDrive\\Escritorio\\TP-programacion-II\\APIVehiculos\\obj\\",
+        "projectPath": "C:\\Users\\nicog\\Documents\\Ingenieria_en_Sistemas\\Segundo\\Programacion_2\\TP-programacion-II\\APIVehiculos\\APIVehiculos.csproj",
+        "packagesPath": "C:\\Users\\nicog\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nicog\\Documents\\Ingenieria_en_Sistemas\\Segundo\\Programacion_2\\TP-programacion-II\\APIVehiculos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\imano\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nicog\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -99,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

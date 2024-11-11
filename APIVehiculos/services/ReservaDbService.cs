@@ -3,21 +3,26 @@ using Microsoft.EntityFrameworkCore;
 public class ReservaDbService : IReservaService
 {
     private readonly ProjectContext _context;
-    private readonly ApplicationDbContext _applicationContext;
+    private readonly ApplicationDbContext _usercontext;
 
-    public ReservaDbService(ProjectContext context, ApplicationDbContext applicationContext)
+    public ReservaDbService(ProjectContext context, ApplicationDbContext usercontext)
     {
         _context = context;
-        _applicationContext = applicationContext;
+        _usercontext = usercontext;
     }
+
     public Reserva CreateReserva(ReservaDTO r)
     {
-        var usuario = _applicationContext.Users.Find(r.UserId);
+        var usuario = _usercontext.Users.Find(r.UserId);
         var vehiculo = _context.Vehiculos.Find(r.VehiculoId);
+
         if (usuario == null || vehiculo == null)
         {
-            throw new Exception("Usuario o vehículo no encontrado");
+            var missingEntity = usuario == null ? "Usuario" : "Vehículo";
+            var missingId = usuario == null ? r.UserId : r.VehiculoId.ToString();
+            throw new Exception($"{missingEntity} no encontrado con ID: {missingId}");
         }
+
         var nuevaReserva = new Reserva
         {
             FechaInicio = r.FechaInicio,
@@ -26,6 +31,7 @@ public class ReservaDbService : IReservaService
             Usuario = usuario,
             Vehiculo = vehiculo
         };
+
         _context.Reservas.Add(nuevaReserva);
         _context.SaveChanges();
         return nuevaReserva;
@@ -43,12 +49,20 @@ public class ReservaDbService : IReservaService
 
     public IEnumerable<Reserva> GetAllReservas()
     {
-        return _context.Reservas;
+        // Incluye los datos del Usuario y Vehículo relacionados en las Reservas
+        return _context.Reservas
+            .Include(r => r.Usuario)
+            .Include(r => r.Vehiculo)
+            .ToList();
     }
 
     public Reserva? GetReservaById(int id)
     {
-        return _context.Reservas.Find(id);
+        // Incluye los datos del Usuario y Vehículo para una reserva específica
+        return _context.Reservas
+            .Include(r => r.Usuario)
+            .Include(r => r.Vehiculo)
+            .FirstOrDefault(r => r.ReservaId == id);
     }
 
     public Reserva? UpdateReserva(int id, Reserva r)
@@ -60,6 +74,9 @@ public class ReservaDbService : IReservaService
 
     public IEnumerable<Reserva> GetReservasByUserId(string userId)
     {
-        return _context.Reservas.Where(r => r.UserId == userId);
+        return _context.Reservas
+            .Where(r => r.UserId == userId)
+            .Include(r => r.Vehiculo)
+            .ToList();
     }
 }

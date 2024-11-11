@@ -13,5 +13,6 @@ public class ReservaDTO
 
     [Required(ErrorMessage = "El campo Estado es requerido.")]
     public required string Estado { get; set; }
-    public string? UserId { get; internal set; }
+    [Required(ErrorMessage = "El campo UserId es requerido.")]
+    public string? UserId { get; set; }
 }

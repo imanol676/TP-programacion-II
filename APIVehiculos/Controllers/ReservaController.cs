@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,6 +50,13 @@ public class ReservaController : ControllerBase
     [HttpPost]
     public ActionResult<Reserva> CreateReserva(ReservaDTO r)
     {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userId == null)
+        {
+            return Unauthorized("Usuario no autenticado");
+        }
+
+        r.UserId = userId;
         Reserva _r = _reservaServices.CreateReserva(r);
 
         return CreatedAtAction(nameof(GetReservaById), new { id = _r.ReservaId }, _r);

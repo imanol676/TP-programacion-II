@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIVehiculos.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20241111025708_novoCon")]
-    partial class novoCon
+    [Migration("20241111150115_BaseFin")]
+    partial class BaseFin
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,7 +136,7 @@ namespace APIVehiculos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vehicles", (string)null);
+                    b.ToTable("Vehiculo", (string)null);
                 });
 
             modelBuilder.Entity("Reserva", b =>

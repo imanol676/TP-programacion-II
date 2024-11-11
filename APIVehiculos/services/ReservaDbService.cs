@@ -13,7 +13,7 @@ public class ReservaDbService : IReservaService
 
     public Reserva CreateReserva(ReservaDTO r)
     {
-        var usuario = _usercontext.Users.Find(r.UserId);
+        var usuario = _usercontext.Users.FirstOrDefault(x => x.UserName == r.UserId);
         var vehiculo = _context.Vehiculos.Find(r.VehiculoId);
 
         if (usuario == null || vehiculo == null)
@@ -29,6 +29,7 @@ public class ReservaDbService : IReservaService
             FechaFin = r.FechaFin,
             Estado = r.Estado,
             Usuario = usuario,
+            UsuarioId = usuario.Id,
             Vehiculo = vehiculo
         };
 
@@ -36,6 +37,7 @@ public class ReservaDbService : IReservaService
         _context.SaveChanges();
         return nuevaReserva;
     }
+
 
     public void DeleteReserva(int id)
     {
@@ -75,8 +77,13 @@ public class ReservaDbService : IReservaService
     public IEnumerable<Reserva> GetReservasByUserId(string userId)
     {
         return _context.Reservas
-            .Where(r => r.UserId == userId)
+            .Where(r => r.UsuarioId == userId)
             .Include(r => r.Vehiculo)
             .ToList();
+    }
+
+    public ReservaDTO CreateReserva(string userName)
+    {
+        throw new NotImplementedException();
     }
 }

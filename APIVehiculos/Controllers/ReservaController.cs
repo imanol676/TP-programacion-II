@@ -50,7 +50,8 @@ public class ReservaController : ControllerBase
     [HttpPost]
     public ActionResult<Reserva> CreateReserva(ReservaDTO r)
     {
-        r.UserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        r.UserId = User.FindFirst(ClaimTypes.Name)?.Value;
+
         Reserva _r = _reservaServices.CreateReserva(r);
 
         return CreatedAtAction(nameof(GetReservaById), new { id = _r.ReservaId }, _r);

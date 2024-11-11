@@ -24,7 +24,7 @@ public class ProjectContext : DbContext
 
         modelBuilder.Entity<Vehiculo>(entity =>
         {
-            modelBuilder.Entity<Vehiculo>().ToTable("Vehicles");
+            modelBuilder.Entity<Vehiculo>().ToTable("Vehiculo");
 
             entity.Property(v => v.Marca).IsRequired();
             entity.Property(v => v.Modelo).IsRequired();
@@ -34,14 +34,9 @@ public class ProjectContext : DbContext
 
         modelBuilder.Entity<Reserva>(entity =>
             {
-
                 entity.Property(r => r.Estado).IsRequired();
-
                 entity.HasOne(r => r.Vehiculo).WithMany(v => v.Reservas).HasForeignKey(r => r.VehiculoId).OnDelete(DeleteBehavior.Restrict);
-
-                entity.HasOne(r => r.Usuario)
-                .WithMany(u => u.Reservas)
-                .HasForeignKey(r => r.UserId)
+                entity.HasOne(r => r.Usuario).WithMany(u => u.Reservas).HasForeignKey(r => r.UsuarioId)
                 .OnDelete(DeleteBehavior.Cascade);
 
                 // Restricción de fecha para evitar reservas en fechas pasadas

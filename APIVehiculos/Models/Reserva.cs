@@ -11,7 +11,7 @@ public class Reserva
     public Vehiculo Vehiculo { get; set; }
 
     public ApplicationUser Usuario { get; set; }
-    public string? UserId { get; internal set; }
+    public string? UsuarioId { get; internal set; }
 
 
 }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIVehiculos.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241111042333_InitialIdentitySetup")]
-    partial class InitialIdentitySetup
+    [Migration("20241111150141_BaseFin")]
+    partial class BaseFin
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

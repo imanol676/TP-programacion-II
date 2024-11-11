@@ -133,7 +133,7 @@ namespace APIVehiculos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vehicles", (string)null);
+                    b.ToTable("Vehiculo", (string)null);
                 });
 
             modelBuilder.Entity("Reserva", b =>

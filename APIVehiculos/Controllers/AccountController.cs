@@ -133,7 +133,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpGet("/users/{id}/roles")]
-    public async Task<IActionResult> GetRoles(string id)
+    public async Task<IActionResult> GetUserRoles(string id)
     {
         var user = await _userManager.FindByIdAsync(id);
         if (user != null)

@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Authorize]
+//[Authorize]
 [Route("api/vehiculos")]
-public class vehiculoController : ControllerBase
+public class VehiculoController : ControllerBase
 {
     private readonly IVehiculoService _vehiculoService;
 
-    public vehiculoController(IVehiculoService vehiculoService)
+    public VehiculoController(IVehiculoService vehiculoService)
     {
         _vehiculoService = vehiculoService;
     }
@@ -27,15 +27,18 @@ public class vehiculoController : ControllerBase
         return Ok(a);
 
     }
-
+    [Authorize(Roles = "ADMIN")]
     [HttpPost]
     public ActionResult<Vehiculo> CreateVehiculo(VehiculoDTO v)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         Vehiculo _v = _vehiculoService.CreateVehiculo(v);
-
         return CreatedAtAction(nameof(GetVehiculoById), new { id = _v.Id }, _v);
     }
-
+    [Authorize(Roles = "ADMIN")]
     [HttpDelete("{id}")]
     public ActionResult DeleteVehiculo(int id)
     {
@@ -48,7 +51,7 @@ public class vehiculoController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public ActionResult<Vehiculo> UpdateReserva(int id, Vehiculo updatedVehiculo)
+    public ActionResult<Vehiculo> UpdateVehiculo(int id, Vehiculo updatedVehiculo)
     {
         // Asegurarse de que el ID del autor en la solicitud coincida con el ID del parámetro
         if (id != updatedVehiculo.Id)

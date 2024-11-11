@@ -23,7 +23,7 @@ public class ReservaController : ControllerBase
     }
 
     [HttpGet("{id}/reserva")]
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "ADMIN")]
 
     public ActionResult<List<Reserva>> GetReservasByUserId(string id)
     {
@@ -33,7 +33,6 @@ public class ReservaController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [Authorize(Roles = "admin")]
 
     public ActionResult<Reserva> GetReservaById(int id)
     {

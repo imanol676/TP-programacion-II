@@ -8,8 +8,6 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
 
 //crear variable para la cadena de conexión
 var connectionString = builder.Configuration.GetConnectionString("cnVehiculos");
@@ -18,11 +16,15 @@ var connectionString = builder.Configuration.GetConnectionString("cnVehiculos");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
      options.UseSqlServer(builder.Configuration.GetConnectionString("cnVehiculos")));
 
-//registrar servicio para la conexión
-//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-//builder.Services.AddDbContext<ProjectContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ProjectContext>(options =>
+     options.UseSqlServer(builder.Configuration.GetConnectionString("cnVehiculos")));
 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
+// Add services to the container.
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -62,10 +64,7 @@ builder.Services.AddScoped<IReservaService, ReservaDbService>();
 builder.Services.AddScoped<IVehiculoService, VehiculoDbService>();
 
 
-// Configurar Identity
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
+
 
 // Configurar JWT para autenticación
 builder.Services.AddAuthentication(options =>

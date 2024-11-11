@@ -47,7 +47,7 @@ public class AccountController : ControllerBase
         var result = await _userManager.CreateAsync(user, model.Password);
         if (!result.Succeeded)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Error al crear usuario" });
+            return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Error al crear usuario", Errors = result.Errors });
         }
 
         return Ok(new { Message = "Usuario creado satisfactoriamente" });

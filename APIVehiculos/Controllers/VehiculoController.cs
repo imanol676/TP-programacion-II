@@ -50,21 +50,30 @@ public class VehiculoController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("{id}")]
-    public ActionResult<Vehiculo> UpdateVehiculo(int id, Vehiculo updatedVehiculo)
-    {
-        // Asegurarse de que el ID del autor en la solicitud coincida con el ID del parámetro
-        if (id != updatedVehiculo.Id)
-        {
-            return BadRequest("El ID del vehiculo en la URL no coincide con el ID del vehiculo en el cuerpo de la solicitud.");
-        }
-        var vehiculo = _vehiculoService.UpdateVehiculo(id, updatedVehiculo);
 
-        if (vehiculo is null)
+    [HttpPut("{id}")]
+    public ActionResult<Vehiculo> UpdateVehiculo(int id, VehiculoUpdateDTO updatedVehiculo)
+    {
+        try
         {
-            return NotFound();
+            if (id != updatedVehiculo.Id)
+            {
+                return BadRequest(new { Message = "El ID del vehículo en la URL no coincide con el ID del vehículo en el cuerpo de la solicitud." });
+            }
+
+            Vehiculo vehiculo = _vehiculoService.UpdateVehiculo(id, updatedVehiculo);
+            if (vehiculo is null)
+            {
+                return NotFound(new { Message = $"No se pudo actualizar el vehículo con id: {id}" });
+            }
+
+            return Ok(vehiculo); // Puedes usar Ok para un simple 200 en lugar de CreatedAtAction
         }
-        return CreatedAtAction(nameof(GetVehiculoById), new { id = vehiculo.Id }, vehiculo);
+        catch (System.Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return Problem(detail: e.Message, statusCode: 500);
+        }
     }
 
 

@@ -3,21 +3,28 @@ using Microsoft.EntityFrameworkCore;
 public class ReservaDbService : IReservaService
 {
     private readonly ProjectContext _context;
+    private readonly ApplicationDbContext _applicationContext;
 
-    public ReservaDbService(ProjectContext context)
+    public ReservaDbService(ProjectContext context, ApplicationDbContext applicationContext)
     {
         _context = context;
+        _applicationContext = applicationContext;
     }
     public Reserva CreateReserva(ReservaDTO r)
     {
+        var usuario = _applicationContext.Users.Find(r.UserId);
+        var vehiculo = _context.Vehiculos.Find(r.VehiculoId);
+        if (usuario == null || vehiculo == null)
+        {
+            throw new Exception("Usuario o vehículo no encontrado");
+        }
         var nuevaReserva = new Reserva
         {
-            UserId = r.UserId,
-            VehiculoId = r.VehiculoId,
             FechaInicio = r.FechaInicio,
             FechaFin = r.FechaFin,
             Estado = r.Estado,
-
+            Usuario = usuario,
+            Vehiculo = vehiculo
         };
         _context.Reservas.Add(nuevaReserva);
         _context.SaveChanges();

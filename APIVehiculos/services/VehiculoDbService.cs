@@ -47,10 +47,21 @@ public class VehiculoDbService : IVehiculoService
         return _context.Vehiculos.Find(id);
     }
 
-    public Vehiculo? UpdateVehiculo(int id, Vehiculo vehiculo)
+    public Vehiculo? UpdateVehiculo(int id, VehiculoUpdateDTO vehiculoDto)
     {
-        _context.Entry(vehiculo).State = EntityState.Modified;
+        var vehiculoExistente = _context.Vehiculos.Find(id);
+
+        if (vehiculoExistente == null)
+        {
+            return null;
+        }
+        vehiculoExistente.Marca = vehiculoDto.Marca;
+        vehiculoExistente.Modelo = vehiculoDto.Modelo;
+        vehiculoExistente.PrecioPorDia = vehiculoDto.PrecioPorDia;
+        vehiculoExistente.EstaDisponible = vehiculoDto.EstaDisponible;
+
+        _context.Entry(vehiculoExistente).State = EntityState.Modified;
         _context.SaveChanges();
-        return vehiculo;
+        return vehiculoExistente;
     }
 }

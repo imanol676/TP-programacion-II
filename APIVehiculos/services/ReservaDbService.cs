@@ -28,10 +28,11 @@ public class ReservaDbService : IReservaService
             FechaInicio = r.FechaInicio,
             FechaFin = r.FechaFin,
             Estado = r.Estado,
-            Usuario = usuario,
-            UsuarioId = usuario.Id,
-            Vehiculo = vehiculo
+            VehiculoId = r.VehiculoId,
+            Usuario = usuario
         };
+
+
 
         _context.Reservas.Add(nuevaReserva);
         _context.SaveChanges();

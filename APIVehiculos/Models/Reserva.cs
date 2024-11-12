@@ -14,6 +14,16 @@ public class Reserva
     public string? UsuarioId { get; internal set; }
 
 
+    // Constructor
+    public Reserva() { }
+
+    public Reserva(DateTime fechaInicio, DateTime fechaFin, string estado, int vehiculoId, ApplicationUser usuario)
+    {
+        FechaInicio = fechaInicio;
+        FechaFin = fechaFin;
+        Estado = estado;
+        VehiculoId = vehiculoId;
+        Usuario = usuario;
+        UsuarioId = usuario?.Id;
+    }
 }
-
-

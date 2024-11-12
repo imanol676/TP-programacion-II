@@ -11,24 +11,14 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
 public class ProjectContext : DbContext
 {
-
     public ProjectContext(DbContextOptions<ProjectContext> options) : base(options)
     {
 
     }
-
-
-
     public DbSet<Vehiculo> Vehiculos { get; set; }
     public DbSet<Reserva> Reservas { get; set; }
-
-
-
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
-
         modelBuilder.Entity<Vehiculo>(entity =>
         {
             modelBuilder.Entity<Vehiculo>().ToTable("Vehiculo");
@@ -41,6 +31,8 @@ public class ProjectContext : DbContext
 
         modelBuilder.Entity<Reserva>(entity =>
             {
+                modelBuilder.Entity<Reserva>().ToTable("Reserva");
+
                 entity.Property(r => r.Estado).IsRequired();
                 entity.HasOne(r => r.Vehiculo).WithMany(v => v.reservas).HasForeignKey(r => r.VehiculoId).OnDelete(DeleteBehavior.Restrict);
                 entity.HasOne(r => r.Usuario).WithMany(u => u.reserva).HasForeignKey(r => r.UsuarioId)
@@ -49,6 +41,5 @@ public class ProjectContext : DbContext
                 // Restricción de fecha para evitar reservas en fechas pasadas
                 entity.ToTable(t => t.HasCheckConstraint("CK_Reserva_Fecha", "FechaInicio >= GETDATE()"));
             });
-
     }
 }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIVehiculos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241111230436_BaseFin")]
+    [Migration("20241112002052_BaseFin")]
     partial class BaseFin
     {
         /// <inheritdoc />
